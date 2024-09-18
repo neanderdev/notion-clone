@@ -7,6 +7,8 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { cn } from "@/lib/utils";
 
+import { UserItem } from "./user-item";
+
 export function Navigation() {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -120,7 +122,7 @@ export function Navigation() {
                 </div>
 
                 <div>
-                    <p>Actions items</p>
+                    <UserItem />
                 </div>
 
                 <div className="mt-4">
