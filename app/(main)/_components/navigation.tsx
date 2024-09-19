@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
@@ -11,13 +11,13 @@ import { api } from "@/convex/_generated/api";
 
 import { cn } from "@/lib/utils";
 
+import { DocumentList } from "./document-list";
 import { Item } from "./item";
 import { UserItem } from "./user-item";
 
 export function Navigation() {
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
-    const documents = useQuery(api.documents.get);
     const create = useMutation(api.documents.create);
 
     const isResizingRef = useRef(false);
@@ -162,9 +162,7 @@ export function Navigation() {
                 </div>
 
                 <div className="mt-4">
-                    {documents?.map((document, index) => (
-                        <p key={index}>{document.title}</p>
-                    ))}
+                    <DocumentList />
                 </div>
 
                 <div
