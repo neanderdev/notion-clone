@@ -15,6 +15,7 @@ import {
 import { api } from "@/convex/_generated/api";
 
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 import { cn } from "@/lib/utils";
 
 import { DocumentList } from "./document-list";
@@ -24,6 +25,7 @@ import { UserItem } from "./user-item";
 
 export function Navigation() {
     const search = useSearch();
+    const settings = useSettings();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
@@ -159,7 +161,7 @@ export function Navigation() {
                     <Item
                         label="Settings"
                         icon={Settings}
-                        onClick={() => { }}
+                        onClick={settings.onOpen}
                     />
 
                     <Item
