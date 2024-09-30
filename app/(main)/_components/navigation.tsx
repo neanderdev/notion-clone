@@ -2,7 +2,7 @@
 
 import { useMutation } from "convex/react";
 import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useMediaQuery } from "usehooks-ts";
@@ -25,6 +25,7 @@ import { TrashBox } from "./trash-box";
 import { UserItem } from "./user-item";
 
 export function Navigation() {
+    const router = useRouter();
     const search = useSearch();
     const settings = useSettings();
     const params = useParams();
@@ -120,7 +121,8 @@ export function Navigation() {
     }
 
     function handleCreate() {
-        const promise = create({ title: "Untitled" });
+        const promise = create({ title: "Untitled" })
+            .then((documentId) => router.push(`/documents/${documentId}`));
 
         toast.promise(promise, {
             loading: "Creating a new note...",

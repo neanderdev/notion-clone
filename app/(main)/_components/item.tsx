@@ -69,7 +69,7 @@ export function Item({
                     onExpand?.();
                 }
 
-                // router.push(`/documents/${documentId}`);
+                router.push(`/documents/${documentId}`);
             });
 
         toast.promise(promise, {
@@ -84,10 +84,11 @@ export function Item({
 
         if (!id) return;
 
-        const promise = archive({ id });
+        const promise = archive({ id })
+            .then(() => router.push("/documents"));
 
         toast.promise(promise, {
-            loading: "Moving to trasg...",
+            loading: "Moving to trash...",
             success: "Note moved to trash!",
             error: "Failed to archive note.",
         });
