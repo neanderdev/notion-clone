@@ -59,7 +59,7 @@ export function SearchCommand() {
 
     return (
         <CommandDialog open={isOpen} onOpenChange={onClose}>
-            <CommandInput 
+            <CommandInput
                 placeholder={`Search ${user?.fullName}'s Jotion...`}
             />
 
@@ -68,9 +68,9 @@ export function SearchCommand() {
 
                 <CommandGroup heading="Documents">
                     {documents?.map((document, index) => (
-                        <CommandItem 
+                        <CommandItem
                             key={index}
-                            value={`${document._id}-${document.title}`}
+                            value={`${document._id}`}
                             title={document.title}
                             onSelect={onSelect}
                         >
